@@ -1,0 +1,80 @@
+@import '__variables.scss';
+
+@mixin text($fsz, $lh, $color: $white, $fw: 600, $ls: 1px) {
+  font-family: 'Inter', sans-serif;
+  font-size: $fsz;
+  line-height: $lh;
+  color: $color;
+  font-weight: $fw;
+  letter-spacing: $ls;
+  font-display: swap;
+  font-style: normal;
+  @content;
+}
+
+@mixin flex {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  @content;
+}
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  @content;
+}
+
+@mixin links($transition: none, $opacity: white) {
+  text-decoration: none;
+  transition: $transition;
+  cursor: pointer;
+  &:hover {
+    opacity: $opacity;
+  }
+  &:active {
+    opacity: $opacity;
+  }
+  &:focus {
+    opacity: $opacity;
+  }
+}
+
+@mixin button($padd: 0, $pedd: 0) {
+  padding: $padd $pedd;
+  background-color: $blue;
+  @include text(13px, 18px, $white, bold) {
+    letter-spacing: 0.5px;
+    @include links(75%);
+  }
+}
+
+@mixin wh($w: auto, $h: auto) {
+  width: $w;
+  height: $h;
+}
+
+@mixin tl($t: auto, $l: auto) {
+  top: $t;
+  left: $l;
+}
+
+@mixin bg($bg...) {
+  background: $bg;
+}
+
+@mixin flexPack {
+  text-align: left;
+  align-items: flex-start;
+  @content
+}
+
+@mixin att($color, $fz, $mt) {
+  color: $color;
+  font-size: $fz;
+  margin-top: $mt;
+}

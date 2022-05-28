@@ -1,0 +1,150 @@
+@import '__variables.scss';
+@import '__mixins.scss';
+
+//Common styles
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: $lightBlue;
+  height: 100%;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: $black;
+}
+
+.wrapper {
+  width: 1160px;
+  margin: 50px auto;
+  background-color: $white;
+  border-radius: 20px 20px 0 0;
+}
+
+.initializing {
+  @include flexColumn;
+}
+
+//For span
+
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+.gold {
+  color: gold;
+}
+
+//Header styles start
+
+.header {
+  @include wh;
+  @include flex;
+  border-bottom: 1.5px $lightGray solid;
+  padding: 30px;
+
+  &-left {
+    @include flex;
+    justify-content: flex-start;
+  }
+
+  &-right {
+    @include flex;
+    justify-content: flex-end;
+    margin-right: 30px;
+  }
+
+  &__logo {
+    @include wh(75px, 75px);
+    margin-right: 10px;
+  }
+
+  &__logoBlock {
+    @include flexColumn;
+    align-items: flex-start;
+    &-title {
+      @include text(20px, 24px, $black, 700);
+      text-transform: uppercase;
+    }
+    &-subtitle {
+      @include text(14px, 17px, $gray, 400);
+    }
+  }
+
+  &__orderPrice {
+    @include text(14px, 17px, $darkGray, 600);
+    @include links(.3s all, .65);
+    &::before {
+      content: "";
+      display: block;
+      background: url("../img/basket.svg") no-repeat;
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin: 0 10px 0 0;
+    }
+  }
+
+  &__icons {
+    @include links(.3s all, .65);
+    width: 20px;
+    height: 20px;
+    margin-left: 30px;
+  }
+
+}
+
+//Header styles end
+
+//Main styles start
+
+.main {
+  @include wh;
+  padding: 30px 60px;
+
+  &-block {
+    @include flex;
+  }
+
+  &__title {
+    @include text(28px, 32px, $black, 700);
+  }
+}
+
+//Main styles end
+
+//Footer styles start
+
+.footer {
+
+}
+
+//Footer styles end
+
+//Search styles start
+
+.search {
+  input {
+    @include text(14px, 17px, $gray, 400);
+    background: url("../img/search.svg") no-repeat 18px center;
+    padding: 15px 5px 15px 45px;
+    border: 1px solid $lightGray;
+    border-radius: 10px;
+
+  }
+}
+
+//Search styles end
