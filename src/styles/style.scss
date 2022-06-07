@@ -1,150 +1,315 @@
-@import '__variables.scss';
-@import '__mixins.scss';
+@import "__variables.scss";
+@import "__mixins.scss";
 
 //Common styles
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  background-color: $lightBlue;
-  height: 100%;
-}
-
-ul {
-  padding-inline-start: 0;
+	box-sizing: border-box;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  color: $black;
+	background-color: $white;
 }
 
 .wrapper {
-  width: 1160px;
-  margin: 50px auto;
-  background-color: $white;
-  border-radius: 20px 20px 0 0;
+	@include wh(1180px);
+	margin: 0 auto;
 }
 
-.initializing {
-  @include flexColumn;
+.up {
+	padding: 18px;
+	background: $blue;
+	position: fixed;
+	right: 45px;
+	bottom: 45px;
+	z-index: 999;
+	display: none;
 }
 
-//For span
-
-.blue {
-  color: blue;
+.upActive {
+	display: block;
 }
 
-.red {
-  color: red;
-}
-
-.gold {
-  color: gold;
-}
-
-//Header styles start
+//Header styles
 
 .header {
-  @include wh;
-  @include flex;
-  border-bottom: 1.5px $lightGray solid;
-  padding: 30px;
+	background: url('../img/header/bg.webp') no-repeat fixed center center;
+	background-size: cover;
 
-  &-left {
-    @include flex;
-    justify-content: flex-start;
-  }
+	&__wrapper {
+		@include flex;
+		@include flexPack;
+		padding: 40px 0px 65px;
+	}
+	&__nav {
+		&-link {
+			@include links;
+			@include text(18px, 22px, $white, 400);
+			&:not(:last-child) {
+				margin-right: 50px;
+			}
+			img {
+				@include wh(35px, 35px);
+				fill: #111;
+			}
+		}
+	}
+	&__items {
+		padding: 25px 0px 3px;
+		text-align: right;
+		&-title {
+			@include text(38px, 46px, $white, bold);
+		}
+	}
+	&__blur {
+		background: rgba(31, 32, 33, 0.79);
+	}
 
-  &-right {
-    @include flex;
-    justify-content: flex-end;
-    margin-right: 30px;
-  }
+	&__top-position {
+		@include flex;
+		@include wh(100%);
+		padding-bottom: 50px;
+	}
+	&__logo {
+		@include flex;
+		padding-right: 120px;
+		img {
+			@include wh(80px, 80px);
+			border-radius: 100px;
+			margin-right: 20px;
+		}
 
-  &__logo {
-    @include wh(75px, 75px);
-    margin-right: 10px;
-  }
-
-  &__logoBlock {
-    @include flexColumn;
-    align-items: flex-start;
-    &-title {
-      @include text(20px, 24px, $black, 700);
-      text-transform: uppercase;
-    }
-    &-subtitle {
-      @include text(14px, 17px, $gray, 400);
-    }
-  }
-
-  &__orderPrice {
-    @include text(14px, 17px, $darkGray, 600);
-    @include links(.3s all, .65);
-    &::before {
-      content: "";
-      display: block;
-      background: url("../img/basket.svg") no-repeat;
-      width: 20px;
-      height: 20px;
-      float: left;
-      margin: 0 10px 0 0;
-    }
-  }
-
-  &__icons {
-    @include links(.3s all, .65);
-    width: 20px;
-    height: 20px;
-    margin-left: 30px;
-  }
-
+		&-about {
+			@include flexColumn;
+			align-items: flex-start;
+		}
+		&-title {
+			@include text(24px, 29px, $white, bold);
+		}
+		&-subtitle {
+			@include text(18px, 22px, $white);
+		}
+	}
 }
 
-//Header styles end
-
-//Main styles start
+//Main styles
 
 .main {
-  @include wh;
-  padding: 30px 60px;
+	&__wrapper {
+		@include flexColumn;
+		&-content {
+			@include flex;
+		}
+		&-sortedBy {
+			@include flex {
+				justify-content: flex-start;
+			}
+			margin: 37px 0px;
+			p {
+				@include text(18px, 22px, $black, bold);
+				margin-right: 50px;
+			}
+			a {
+				@include links;
+				@include text(18px, 22px, $black, normal);
+				margin-right: 15px;
+			}
+			img {
+				transition: .3s all;
+				&:not(.price) {
+					margin-right: 50px;
+				}
+			}
+			.active {
+				transform: rotate(180deg);
+				&:not(.price) {
+					margin-right: 50px;
+				}
+			}
+		}
+	}
 
-  &-block {
-    @include flex;
-  }
-
-  &__title {
-    @include text(28px, 32px, $black, 700);
-  }
+	&__item {
+		@include wh(380px);
+		:not(:last-child) {
+			@include flexPack;
+		}
+		background-color: $darkWhite;
+		margin-bottom: 50px;
+		overflow: hidden;
+		img {
+			transition: .3s all;
+			cursor: pointer;
+			&:hover, &:active, &:focus {
+				transform: scale(1.05);
+			}
+		}
+		h3 {
+			@include text(24px, 29px, $black, bold);
+			padding-bottom: 20px;
+		}
+		h4 {
+			@include text(22px, 29px, $black, bold);
+			padding-bottom: 30px;
+		}
+		p {
+			@include text(12px, 15px, $black, normal);
+		}
+		a:not(.main__item-favorites) {
+			@include text(16px, 20px, $white, bold);
+			@include radius(0 0 8px 8px, 20px 159px 20px 160px);
+			text-decoration: none;
+		}
+		&-action {
+			@include wh(100%, 60px);
+			@include flexColumn;
+			@include btn($blue, pointer, 0 0 8px 8px);
+			transition: .3s all;
+			&:hover, &:active, &:focus {
+				background-color: $darkBlue;
+			}
+		}
+		&-sale {
+			@include wh(80px, 40px);
+			@include flex;
+			@include add(absolute, 99, 25px 0 5px 20px);
+			background: $red;
+			border-radius: 10px;
+			position: absolute;
+			margin: 25px 0px 5px 20px;
+			z-index: 99;
+			p {
+				@include text(16px, 20px, $white, normal);
+				margin: auto;
+			}
+		}
+		&-favorites {
+			opacity: 50%;
+			@include links(80%);
+			@include add(absolute, 99, 25px 0px 5px 305px);
+		}
+		&-wrapper {
+			padding: 29px;
+		}
+		&-group {
+			@include flex;
+			padding-bottom: 20px;
+		}
+	}
+	&__content {
+		@include flex;
+	}
+	&__showMore {
+		@include links(55%);
+		@include text(14px, 17px, $black, normal);
+		@include radius(10px, 25px 125px);
+		border: 1px solid #CACACA;
+		box-sizing: border-box;
+		margin: 0px 5px 40px;
+	}
 }
 
-//Main styles end
-
-//Footer styles start
-
-.footer {
-
+.group__info {
+	&-bold {
+		@include text(16px, 20px, $black, bold);
+	}
+	&-left {
+		@include flex;
+		img {
+			margin-right: 18px;
+		}
+	}
+}
+.sold-out {
+	@include wh(100%, 60px);
+	@include flexColumn;
+	@include btn($lightBlack, default, 0 0 8px 8px);
+	&:hover, &:active, &:focus {
+		background-color: $lightBlack;
+	}
+}
+.favorite {
+	opacity: 100%;
+	@include links(100%);
+	@include add(absolute, 99, 25px 0px 5px 305px);
 }
 
-//Footer styles end
+//Footer styles
 
-//Search styles start
-
-.search {
-  input {
-    @include text(14px, 17px, $gray, 400);
-    background: url("../img/search.svg") no-repeat 18px center;
-    padding: 15px 5px 15px 45px;
-    border: 1px solid $lightGray;
-    border-radius: 10px;
-
-  }
+footer {
+	background-color: $lightBlack;
+	h5 {
+		@include text(1.2rem, 1.5rem, $white, bold);
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+	.footer__wrapper-info {
+		@include wh(30%);
+		@include flexColumn {
+			align-items: flex-start;
+		}
+		text-align: left;
+		p {
+			@include text(0.88rem, 1.5rem, $white, normal);
+		}
+	}
+	.footer__wrapper-links {
+		@include wh(65%);
+		@include flex {
+			align-items: flex-start;
+		}
+	}
 }
 
-//Search styles end
+.footer__wrapper {
+	@include flex {
+		align-items: flex-start;
+	}
+	padding: 80px 0px;
+}
+
+.footer__logo {
+	@include flex {
+		justify-content: center;
+	}
+	img {
+		@include wh(40px, 40px);
+		border-radius: 100px;
+		margin-right: 20px;
+	}
+	margin-bottom: 32px;
+}
+
+.footer__links-block {
+	@include flexColumn;
+	align-items: flex-start;
+	p {
+		@include text(0.625rem, 0.75rem, $white, bold);
+		text-transform: uppercase;
+		margin-bottom: 20px;
+	}
+	a {
+		@include links(75%);
+		@include text(0.88rem, 1.35rem, $lightGray, normal);
+		margin-bottom: 10px;
+	}
+	&:last-child {
+		a {
+			@include links(75%);
+			@include flex;
+			@include text(0.88rem, 1.35rem, $lightGray, normal);
+			img {
+				margin-right: 5px;
+			}
+			margin-bottom: 20px;
+			p {
+				@include text(0.625rem, 0.75rem, $lightGray, normal);
+				text-transform: uppercase;
+				&:not(:first-child) {
+					margin: 0;
+				}
+			}
+		}
+	}
+}
+

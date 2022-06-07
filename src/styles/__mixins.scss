@@ -1,15 +1,12 @@
-@import '__variables.scss';
+@import "__variables.scss";
 
-@mixin text($fsz, $lh, $color: $white, $fw: 600, $ls: 1px) {
-  font-family: 'Inter', sans-serif;
-  font-size: $fsz;
-  line-height: $lh;
-  color: $color;
-  font-weight: $fw;
-  letter-spacing: $ls;
-  font-display: swap;
-  font-style: normal;
-  @content;
+@mixin text($fs, $lh, $color: $white, $fw: normal) {
+	font-family: Montserrat;
+	font-style: normal;
+	font-size: $fs;
+	line-height: $lh;
+	color: $color;
+	font-weight: $fw;
 }
 
 @mixin flex {
@@ -17,6 +14,7 @@
   justify-content: space-between;
   text-align: center;
   align-items: center;
+  flex-wrap: wrap;
   @content;
 }
 
@@ -26,55 +24,49 @@
   justify-content: space-between;
   text-align: center;
   align-items: center;
+  flex-wrap: wrap;
   @content;
-}
-
-@mixin links($transition: none, $opacity: white) {
-  text-decoration: none;
-  transition: $transition;
-  cursor: pointer;
-  &:hover {
-    opacity: $opacity;
-  }
-  &:active {
-    opacity: $opacity;
-  }
-  &:focus {
-    opacity: $opacity;
-  }
-}
-
-@mixin button($padd: 0, $pedd: 0) {
-  padding: $padd $pedd;
-  background-color: $blue;
-  @include text(13px, 18px, $white, bold) {
-    letter-spacing: 0.5px;
-    @include links(75%);
-  }
-}
-
-@mixin wh($w: auto, $h: auto) {
-  width: $w;
-  height: $h;
-}
-
-@mixin tl($t: auto, $l: auto) {
-  top: $t;
-  left: $l;
-}
-
-@mixin bg($bg...) {
-  background: $bg;
 }
 
 @mixin flexPack {
   text-align: left;
   align-items: flex-start;
-  @content
+  @content;
 }
 
-@mixin att($color, $fz, $mt) {
-  color: $color;
-  font-size: $fz;
-  margin-top: $mt;
+@mixin links($opacity: 65%, $tr: .3s all) {
+	&:hover, &:active, &:focus {
+		opacity: $opacity;
+	}
+	cursor: pointer;
+	text-decoration: none;
+	transition: $tr;
+	@content;
+}
+
+@mixin wh($w: auto, $h: auto) {
+	width: $w;
+	height: $h;
+}
+
+@mixin tl($t: auto, $l:auto) {
+	top: $t;
+	left: $l;
+}
+
+@mixin btn($color: $white, $cursor: default, $br...) {
+	background-color: $color;
+	cursor: $cursor;
+	border-radius: $br;
+}
+
+@mixin add($pos, $z, $m...) {
+	position: $pos;
+	z-index: $z;
+	margin: $m;
+}
+
+@mixin radius($br, $p...) {
+	border-radius: $br;
+	padding: $p;
 }
