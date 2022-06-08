@@ -4,312 +4,691 @@
 //Common styles
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-	background-color: $white;
+  background-color: $white;
 }
 
 .wrapper {
-	@include wh(1180px);
-	margin: 0 auto;
+  @include wh(1180px);
+  margin: 0 auto;
 }
 
 .up {
-	padding: 18px;
-	background: $blue;
-	position: fixed;
-	right: 45px;
-	bottom: 45px;
-	z-index: 999;
-	display: none;
+  padding: 18px;
+  background: $blue;
+  position: fixed;
+  right: 45px;
+  bottom: 45px;
+  z-index: 999;
+  display: none;
 }
 
 .upActive {
-	display: block;
+  display: block;
+}
+
+.default-button {
+  @include links;
+  background: $white;
+  border: 2px $lightGray solid;
+  border-radius: 10px;
+
+  img {
+    padding: 5px 10px;
+  }
+}
+
+.discountPercentage {
+  @include flex;
+  background: $red;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 99;
+  top: 30px;
+  left: 20px;
+
+  p {
+    @include text(14px, 18px, $white, normal);
+    margin: auto;
+    padding: 7px 13px;
+  }
+}
+
+.addToFavorites {
+  opacity: 30%;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  z-index: 99;
+  @include links(80%);
+
+  img {
+    @include wh(25px);
+  }
 }
 
 //Header styles
 
 .header {
-	background: url('../img/header/bg.webp') no-repeat fixed center center;
-	background-size: cover;
+  background: url('../img/header/bg.webp') no-repeat fixed center center;
+  background-size: cover;
 
-	&__wrapper {
-		@include flex;
-		@include flexPack;
-		padding: 40px 0px 65px;
-	}
-	&__nav {
-		&-link {
-			@include links;
-			@include text(18px, 22px, $white, 400);
-			&:not(:last-child) {
-				margin-right: 50px;
-			}
-			img {
-				@include wh(35px, 35px);
-				fill: #111;
-			}
-		}
-	}
-	&__items {
-		padding: 25px 0px 3px;
-		text-align: right;
-		&-title {
-			@include text(38px, 46px, $white, bold);
-		}
-	}
-	&__blur {
-		background: rgba(31, 32, 33, 0.79);
-	}
+  &__wrapper {
+    @include flex;
+    @include flexPack;
+    padding: 40px 0px 65px;
+  }
 
-	&__top-position {
-		@include flex;
-		@include wh(100%);
-		padding-bottom: 50px;
-	}
-	&__logo {
-		@include flex;
-		padding-right: 120px;
-		img {
-			@include wh(80px, 80px);
-			border-radius: 100px;
-			margin-right: 20px;
-		}
+  &__nav {
+    &-link {
+      @include links;
+      @include text(18px, 22px, $white, 400);
 
-		&-about {
-			@include flexColumn;
-			align-items: flex-start;
-		}
-		&-title {
-			@include text(24px, 29px, $white, bold);
-		}
-		&-subtitle {
-			@include text(18px, 22px, $white);
-		}
-	}
+      &:not(:last-child) {
+        margin-right: 50px;
+      }
+
+      img {
+        @include wh(35px, 35px);
+        fill: #111;
+      }
+    }
+
+    &-basket {
+      background: url('../img/basket.svg') no-repeat left;
+      padding-left: 32px;
+    }
+  }
+
+  &__items {
+    padding: 25px 0px 3px;
+    text-align: right;
+
+    &-title {
+      @include text(38px, 46px, $white, bold);
+    }
+  }
+
+  &__blur {
+    background: rgba(31, 32, 33, 0.85);
+  }
+
+  &__top-position {
+    @include flex;
+    @include wh(100%);
+    padding-bottom: 50px;
+  }
+
+  &__logo {
+    @include flex;
+    padding-right: 120px;
+
+    img {
+      @include wh(80px, 80px);
+      border-radius: 100px;
+      margin-right: 20px;
+    }
+
+    &-about {
+      @include flexColumn;
+      align-items: flex-start;
+    }
+
+    &-title {
+      @include text(24px, 29px, $white, bold);
+    }
+
+    &-subtitle {
+      @include text(18px, 22px, $white);
+    }
+  }
 }
 
 //Main styles
 
 .main {
-	&__wrapper {
-		@include flexColumn;
-		&-content {
-			@include flex;
-		}
-		&-sortedBy {
-			@include flex {
-				justify-content: flex-start;
-			}
-			margin: 37px 0px;
-			p {
-				@include text(18px, 22px, $black, bold);
-				margin-right: 50px;
-			}
-			a {
-				@include links;
-				@include text(18px, 22px, $black, normal);
-				margin-right: 15px;
-			}
-			img {
-				transition: .3s all;
-				&:not(.price) {
-					margin-right: 50px;
-				}
-			}
-			.active {
-				transform: rotate(180deg);
-				&:not(.price) {
-					margin-right: 50px;
-				}
-			}
-		}
-	}
+  &__wrapper {
+    @include flexColumn;
 
-	&__item {
-		@include wh(380px);
-		:not(:last-child) {
-			@include flexPack;
-		}
-		background-color: $darkWhite;
-		margin-bottom: 50px;
-		overflow: hidden;
-		img {
-			transition: .3s all;
-			cursor: pointer;
-			&:hover, &:active, &:focus {
-				transform: scale(1.05);
-			}
-		}
-		h3 {
-			@include text(24px, 29px, $black, bold);
-			padding-bottom: 20px;
-		}
-		h4 {
-			@include text(22px, 29px, $black, bold);
-			padding-bottom: 30px;
-		}
-		p {
-			@include text(12px, 15px, $black, normal);
-		}
-		a:not(.main__item-favorites) {
-			@include text(16px, 20px, $white, bold);
-			@include radius(0 0 8px 8px, 20px 159px 20px 160px);
-			text-decoration: none;
-		}
-		&-action {
-			@include wh(100%, 60px);
-			@include flexColumn;
-			@include btn($blue, pointer, 0 0 8px 8px);
-			transition: .3s all;
-			&:hover, &:active, &:focus {
-				background-color: $darkBlue;
-			}
-		}
-		&-sale {
-			@include wh(80px, 40px);
-			@include flex;
-			@include add(absolute, 99, 25px 0 5px 20px);
-			background: $red;
-			border-radius: 10px;
-			position: absolute;
-			margin: 25px 0px 5px 20px;
-			z-index: 99;
-			p {
-				@include text(16px, 20px, $white, normal);
-				margin: auto;
-			}
-		}
-		&-favorites {
-			opacity: 50%;
-			@include links(80%);
-			@include add(absolute, 99, 25px 0px 5px 305px);
-		}
-		&-wrapper {
-			padding: 29px;
-		}
-		&-group {
-			@include flex;
-			padding-bottom: 20px;
-		}
-	}
-	&__content {
-		@include flex;
-	}
-	&__showMore {
-		@include links(55%);
-		@include text(14px, 17px, $black, normal);
-		@include radius(10px, 25px 125px);
-		border: 1px solid #CACACA;
-		box-sizing: border-box;
-		margin: 0px 5px 40px;
-	}
+    &-content {
+      @include flexColumn;
+      @include wh(100%);
+    }
+
+    &-top {
+      @include wh(100%);
+    }
+
+    &-search {
+      margin: 37px 0px;
+      @include flex;
+
+      p {
+        @include text(28px, 32px, $black, 700);
+      }
+    }
+
+    &-back {
+      @include flex;
+
+      button {
+        margin-right: 20px;
+      }
+    }
+
+    &-sortedBy {
+      margin-bottom: 50px;
+      @include flex {
+        justify-content: flex-start;
+      }
+
+      p {
+        @include text(18px, 22px, $black, bold);
+        margin-right: 50px;
+      }
+
+      a {
+        @include links;
+        @include text(18px, 22px, $black, normal);
+        margin-right: 15px;
+      }
+
+      &_age, &_price {
+        img {
+          transition: .3s all;
+
+          &:not(.price) {
+            margin-right: 50px;
+          }
+        }
+      }
+
+      .active {
+        transform: rotate(180deg);
+
+        &:not(.price) {
+          margin-right: 50px;
+        }
+      }
+    }
+  }
+
+  &__basket {
+    @include flexColumn;
+    @include wh(100%);
+    margin: -20px 0;
+
+    &-item {
+      @include flex;
+      @include wh(100%);
+      margin: 20px 0;
+    }
+
+    &-photoBlock {
+      @include wh(230px);
+      position: relative;
+    }
+
+    &-desc {
+      @include flexColumn;
+      @include wh(50%);
+      align-items: flex-start;
+      text-align: left;
+      flex-grow: 6;
+      background: $lightGray;
+      border-radius: 0 20px 20px 0;
+      padding: 29px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    &-sizes {
+      margin-bottom: 20px;
+    }
+
+    &-title {
+      @include flex;
+      @include text(20px, 25px, $black, bold);
+      padding-bottom: 20px;
+
+      span {
+        @include text(14px, 18px, $gray, bold);
+        margin-left: 8px;
+      }
+    }
+
+    &-photo {
+      @include wh(100%, 203px);
+      transition: .3s all;
+      cursor: pointer;
+      border-radius: 20px 0 0 20px;
+    }
+
+    &-price {
+      @include text(24px, 29px, $black, bold);
+      @include flex;
+
+      span {
+        @include text(20px, 25px, red, bold);
+        text-decoration: line-through;
+        margin-left: 15px;
+      }
+
+      //Наискосок перечеркнуто, либо крест-накрест:
+
+      //span {
+      //	@include text(20px, 25px, red, bold);
+      //	white-space: pre;
+      //	position: relative;
+      //	display: inline-block;
+      //	&::before {
+      //		content: "";
+      //		display: block;
+      //		position: absolute;
+      //		left: 0;
+      //		top: 50%;
+      //		color: red;
+      //		width: 100%;
+      //		height: 0;
+      //		border-bottom: 1.5px solid red;
+      //		transform: rotate(10deg);
+      //	}
+      //	&::after {
+      //		content: "";
+      //		display: block;
+      //		position: absolute;
+      //		left: 0;
+      //		top: 50%;
+      //		color: red;
+      //		width: 100%;
+      //		height: 0;
+      //		border-bottom: 1.5px solid red;
+      //		transform: rotate(-10deg);
+      //	}
+      //}
+    }
+
+    &-buy {
+      @include btn($blue, pointer, 15px);
+      @include text(16px, 20px, $white, bold);
+      text-decoration: none;
+      padding: 15px 5px;
+      transition: .3s all;
+    }
+
+    &-buttonsGroup {
+      @include flexColumn;
+      flex-grow: 1;
+
+      &-text {
+        @include text(16px, 20px, $white, bold);
+        text-decoration: none;
+        padding: 15px 5px;
+      }
+
+    }
+  }
+
+  &__checkout {
+    @include flex;
+    @include wh(100%);
+    margin: 80px 0 50px;
+
+    &-button {
+      @include links;
+      @include text(14px, 17px, $black, normal);
+      @include radius(15px, 10px 20px);
+      border: 2px solid $lightGray;
+      box-sizing: border-box;
+    }
+
+    p {
+      @include text(24px, 28px, $black, 700);
+
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__catsName {
+    @include text(20px, 25px, $black, bold);
+    padding-bottom: 20px;
+    min-height: 70px;
+  }
+
+  &__item {
+    @include wh(250px);
+    position: relative;
+    border-radius: 0 0 15px 15px;
+
+    :not(:last-child) {
+      @include flexPack;
+    }
+
+    background-color: $darkWhite;
+    margin-bottom: 50px;
+    overflow: hidden;
+
+    h3 {
+      @include text(20px, 25px, $black, bold);
+      padding-bottom: 20px;
+    }
+
+    h4 {
+      @include text(24px, 29px, $black, bold);
+      min-height: 58px;
+      display: grid;
+      align-items: end;
+
+      span {
+        @include text(20px, 25px, red, bold);
+        text-decoration: line-through;
+      }
+
+      //Наискосок перечеркнуто, либо крест-накрест:
+
+      //span {
+      //	@include text(20px, 25px, red, bold);
+      //	white-space: pre;
+      //	position: relative;
+      //	display: inline-block;
+      //	&::before {
+      //		content: "";
+      //		display: block;
+      //		position: absolute;
+      //		left: 0;
+      //		top: 50%;
+      //		color: red;
+      //		width: 100%;
+      //		height: 0;
+      //		border-bottom: 1.5px solid red;
+      //		transform: rotate(10deg);
+      //	}
+      //	&::after {
+      //		content: "";
+      //		display: block;
+      //		position: absolute;
+      //		left: 0;
+      //		top: 50%;
+      //		color: red;
+      //		width: 100%;
+      //		height: 0;
+      //		border-bottom: 1.5px solid red;
+      //		transform: rotate(-10deg);
+      //	}
+      //}
+    }
+
+    &-photo {
+      @include wh(100%, 250px);
+      min-height: 250px;
+      transition: .3s all;
+      cursor: pointer;
+
+      &:hover, &:active, &:focus {
+        transform: scale(1.05);
+      }
+    }
+
+    &-action {
+      @include wh(100%);
+      @include flexColumn;
+      @include btn($blue, pointer, 0 0 15px 15px);
+      transition: .3s all;
+
+      &-text {
+        @include text(16px, 20px, $white, bold);
+        text-decoration: none;
+        padding: 15px 5px;
+      }
+
+      &:hover, &:active, &:focus {
+        background-color: $darkBlue;
+      }
+    }
+
+    &-wrapper {
+      padding: 29px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    &-group {
+      @include flex;
+      padding-bottom: 20px;
+    }
+  }
+
+  &__content {
+    @include flex;
+    @include wh(100%);
+  }
+
+  &__backet {
+    @include flexColumn;
+    @include wh(100%);
+  }
+
+
+  &__showMore {
+    @include links(55%);
+    @include text(14px, 17px, $black, normal);
+    @include radius(10px, 25px 125px);
+    border: 2px solid $lightGray;
+    box-sizing: border-box;
+    margin: 0px 5px 40px;
+  }
 }
 
 .group__info {
-	&-bold {
-		@include text(16px, 20px, $black, bold);
-	}
-	&-left {
-		@include flex;
-		img {
-			margin-right: 18px;
-		}
-	}
+  :first-child {
+    margin-bottom: 3px;
+  }
+
+  p {
+    @include text(12px, 15px, $black, normal);
+  }
+
+  &-bold {
+    @include text(16px, 20px, $black, bold);
+    font-weight: bold !important;
+  }
+
+  &-left {
+    @include flex;
+
+    img {
+      @include wh(5px);
+      margin-right: 5px;
+    }
+  }
 }
+
 .sold-out {
-	@include wh(100%, 60px);
-	@include flexColumn;
-	@include btn($lightBlack, default, 0 0 8px 8px);
-	&:hover, &:active, &:focus {
-		background-color: $lightBlack;
-	}
+  @include wh(100%, 60px);
+  @include flexColumn;
+  @include btn($lightBlack, default, 0 0 8px 8px);
+
+  &:hover, &:active, &:focus {
+    background-color: $lightBlack;
+  }
 }
+
 .favorite {
-	opacity: 100%;
-	@include links(100%);
-	@include add(absolute, 99, 25px 0px 5px 305px);
+  opacity: 100%;
+  @include links(100%);
+  @include add(absolute, 99, 25px 0px 5px 305px);
 }
 
 //Footer styles
 
 footer {
-	background-color: $lightBlack;
-	h5 {
-		@include text(1.2rem, 1.5rem, $white, bold);
-		letter-spacing: 0.05em;
-		text-transform: uppercase;
-	}
-	.footer__wrapper-info {
-		@include wh(30%);
-		@include flexColumn {
-			align-items: flex-start;
-		}
-		text-align: left;
-		p {
-			@include text(0.88rem, 1.5rem, $white, normal);
-		}
-	}
-	.footer__wrapper-links {
-		@include wh(65%);
-		@include flex {
-			align-items: flex-start;
-		}
-	}
+  background-color: $lightBlack;
+
+  h5 {
+    @include text(1.2rem, 1.5rem, $white, bold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .footer__wrapper-info {
+    @include wh(30%);
+    @include flexColumn {
+      align-items: flex-start;
+    }
+    text-align: left;
+
+    p {
+      @include text(0.88rem, 1.5rem, $white, normal);
+    }
+  }
+
+  .footer__wrapper-links {
+    @include wh(65%);
+    @include flex {
+      align-items: flex-start;
+    }
+  }
 }
 
 .footer__wrapper {
-	@include flex {
-		align-items: flex-start;
-	}
-	padding: 80px 0px;
+  @include flex {
+    align-items: flex-start;
+  }
+  padding: 80px 0px;
 }
 
 .footer__logo {
-	@include flex {
-		justify-content: center;
-	}
-	img {
-		@include wh(40px, 40px);
-		border-radius: 100px;
-		margin-right: 20px;
-	}
-	margin-bottom: 32px;
+  @include flex {
+    justify-content: center;
+  }
+
+  img {
+    @include wh(40px, 40px);
+    border-radius: 100px;
+    margin-right: 20px;
+  }
+
+  margin-bottom: 32px;
 }
 
 .footer__links-block {
-	@include flexColumn;
-	align-items: flex-start;
-	p {
-		@include text(0.625rem, 0.75rem, $white, bold);
-		text-transform: uppercase;
-		margin-bottom: 20px;
-	}
-	a {
-		@include links(75%);
-		@include text(0.88rem, 1.35rem, $lightGray, normal);
-		margin-bottom: 10px;
-	}
-	&:last-child {
-		a {
-			@include links(75%);
-			@include flex;
-			@include text(0.88rem, 1.35rem, $lightGray, normal);
-			img {
-				margin-right: 5px;
-			}
-			margin-bottom: 20px;
-			p {
-				@include text(0.625rem, 0.75rem, $lightGray, normal);
-				text-transform: uppercase;
-				&:not(:first-child) {
-					margin: 0;
-				}
-			}
-		}
-	}
+  @include flexColumn;
+  align-items: flex-start;
+
+  p {
+    @include text(0.625rem, 0.75rem, $white, bold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  a {
+    @include links(75%);
+    @include text(0.88rem, 1.35rem, $lightGray, normal);
+    margin-bottom: 10px;
+  }
+
+  &:last-child {
+    a {
+      @include links(75%);
+      @include flex;
+      @include text(0.88rem, 1.35rem, $lightGray, normal);
+
+      img {
+        margin-right: 5px;
+      }
+
+      margin-bottom: 20px;
+
+      p {
+        @include text(0.625rem, 0.75rem, $lightGray, normal);
+        text-transform: uppercase;
+
+        &:not(:first-child) {
+          margin: 0;
+        }
+      }
+    }
+  }
 }
 
+//Search styles start
+
+.search {
+  input {
+    @include text(14px, 17px, $gray);
+    background: url("../img/search.svg") no-repeat 18px center;
+    padding: 15px 5px 15px 45px;
+    border: 2px solid $lightGray;
+    border-radius: 10px;
+
+  }
+}
+
+
+.checkbox-btn {
+  @include text(12px, 15px, $black, normal);
+  display: inline-block;
+  margin: 0 5px 0 0;
+  user-select: none;
+  position: relative;
+  transition: .2s all;
+}
+
+.checkbox-btn input[type=checkbox] {
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+.checkbox-btn span {
+  border-radius: 10px;
+  background: $white;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0px 10px;
+  line-height: 30px;
+  transition: background 0.2s ease;
+}
+
+/* Checked */
+.checkbox-btn input[type=checkbox]:checked + span {
+  background: #ffe0a6;
+}
+
+/* Focus */
+.focused span {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+
+/* Hover */
+.checkbox-btn:hover {
+  color: #666;
+}
+
+/* Active */
+.checkbox-btn input[type=checkbox]:active:not(:disabled) + span {
+  background: #d2c5ac;
+  color: #000;
+}
+
+/* Disabled */
+.checkbox-btn input[type=checkbox]:disabled + span {
+  background: #efefef;
+  color: #666;
+  cursor: default;
+}
+
+.checkbox-btn input[type=checkbox]:checked:disabled + span {
+  background: #f7efdc;
+}

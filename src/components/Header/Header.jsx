@@ -30,7 +30,7 @@ const Header = () => {
                             </div>
                             <div className="header__right-position">
                                 <nav className="header__nav">
-                                    <NavLink className="header__nav-link" to={'/basket'} alt='Корзина'>1295 руб</NavLink>
+                                    <NavLink className="header__nav-link header__nav-basket" to={'/basket'} alt='Корзина'>1295 руб</NavLink>
                                     <a className="header__nav-link" href="/"><img src={favorites} alt="Избранное"/></a>
                                     <a className="header__nav-link" href="/"><img src={profile} alt="Профиль"/></a>
                                 </nav>
