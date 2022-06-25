@@ -1,0 +1,167 @@
+@import 'commons/_mixins';
+
+@media screen and (max-width: 1240px) {
+
+    .wrapper {
+        @include wh(800px);
+    }
+
+    .header {
+        &__items {
+            &-title {
+                text-align: right;
+                flex-wrap: wrap;
+            }
+        }
+        &__right {
+            &-position {
+                width: 100%;
+                text-align: right;
+            }
+        }
+        &__left {
+            &-position {
+                width: 100%;
+                text-align: right;
+            }
+        }
+    }
+
+    .footer {
+        &__wrapper {
+            padding: 50px 70px;
+            &-form {
+                a {
+                    padding: 22px 70px;
+                }
+            }
+        }
+        .form-item__input {
+            margin-right: 0;
+        }
+    }
+
+    .form__item {
+        @include flexColumn {
+            align-items: flex-start;
+        }
+        input {
+            margin: 20px 0px;
+            margin-right: 0;
+        }
+        a {
+            padding: 22px 70px;
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .wrapper {
+        @include wh(600px);
+    }
+    .header {
+        &__items {
+            padding-top: 30px;
+            text-align: left;
+        }
+        &__logo {
+            margin-bottom: 30px;
+        }
+        &__items {
+            &-title {
+                text-align: left;
+            }
+        }
+    }
+
+    .main {
+        &__content {
+            @include flexColumn;
+            margin: auto;
+        }
+    }
+
+    .footer {
+        background: $lightBlack;
+        &__wrapper {
+            @include flexColumn;
+            margin: auto;
+            &-form {
+                padding-top: 20px;
+            }
+        }
+        .form-item {
+            input {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+
+    body {
+        width: 100vh;
+    }
+    .wrapper {
+        @include wh(400px);
+    }
+
+    .header {
+        @include wh;
+        margin: 0 auto;
+        &__left {
+            &-position {
+                @include flexColumn;
+                h2 {
+                    margin: 15px;
+                    text-align: center;
+                }
+            }
+        }
+        &__items {
+            text-align: center;
+        }
+        &__top {
+            &-position {
+                @include flexColumn;
+            }
+        }
+        &__nav {
+            &-link {
+                &:not(:last-child) {
+                    padding: 10px;
+                }
+            }
+        }
+        &__logo {
+            padding: 15px;
+        }
+    }
+
+    .main {
+        &__wrapper {
+            &-sortedBy {
+                margin: 15px;
+                p {
+                    margin: 5px;
+                }
+                &:last-child {
+                    margin: 15px 15px 15px 0;
+                    a {
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer {
+        &__wrapper {
+            &-text {
+                width: auto;
+            }
+        }
+    }
+}

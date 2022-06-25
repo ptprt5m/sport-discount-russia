@@ -1,0 +1,92 @@
+@import "../commons/_variables";
+@import "../commons/_mixins";
+
+footer {
+  background-color: $lightBlack;
+
+  h5 {
+    @include text(1.2rem, 1.5rem, $white, bold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .footer__wrapper-info {
+    @include wh(30%);
+    @include flexColumn {
+      align-items: flex-start;
+    }
+    text-align: left;
+
+    p {
+      @include text(0.88rem, 1.5rem, $white, normal);
+    }
+  }
+
+  .footer__wrapper-links {
+    @include wh(65%);
+    @include flex {
+      align-items: flex-start;
+    }
+  }
+}
+
+.footer__wrapper {
+  @include flex {
+    align-items: flex-start;
+  }
+  padding: 80px 0px;
+}
+
+.footer__logo {
+  @include flex {
+    justify-content: center;
+  }
+
+  img {
+    @include wh(40px, 40px);
+    border-radius: 100px;
+    margin-right: 20px;
+  }
+
+  margin-bottom: 32px;
+}
+
+.footer__links-block {
+  @include flexColumn;
+  align-items: flex-start;
+
+  p {
+    @include text(0.625rem, 0.75rem, $white, bold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  a {
+    @include links(75%);
+    @include text(0.88rem, 1.35rem, $lightGray, normal);
+    margin-bottom: 10px;
+  }
+
+  &:last-child {
+    a {
+      @include links(75%);
+      @include flex;
+      @include text(0.88rem, 1.35rem, $lightGray, normal);
+
+      img {
+        margin-right: 5px;
+      }
+
+      margin-bottom: 20px;
+
+      p {
+        @include text(0.625rem, 0.75rem, $lightGray, normal);
+        text-transform: uppercase;
+
+        &:not(:first-child) {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

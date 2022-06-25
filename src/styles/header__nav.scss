@@ -1,0 +1,65 @@
+@import 'commons/_variables';
+@import 'commons/_mixins';
+
+a {
+  text-decoration: none;
+}
+
+nav {
+    font-family: 'MuseoSansBold';
+}
+
+ul {
+    list-style: none;
+    font-size: 18px;
+    margin-right: 10px;
+    li {
+        ul {
+            background: $primary-dark;
+            visibility: hidden;
+            opacity: 0;
+            min-width: 5rem;
+            position: absolute;
+            transition: all 0.5s ease;
+            margin-top: 1rem;
+            left: 0;
+            display: none;
+        }
+    }
+}
+
+li {
+    color: #000;
+    display: block;
+    float: left;
+    padding: 1rem;
+    padding-top: 14px;
+    position: relative;
+    text-decoration: none;
+    transition-duration: 0.5s;
+    a {
+        color: $primary-text;
+    }
+    &:hover,
+    &:focus-within {
+        cursor: pointer;
+        a {
+            outline: none;
+        }
+    }
+}
+
+ul li:hover > ul,
+ul li:focus-within > ul,
+ul li ul:hover,
+ul li ul:focus {
+   visibility: visible;
+   opacity: 1;
+   display: block;
+}
+
+ul li ul li {
+    clear: both;
+    width: 100%;
+    font-size: 15px;
+}

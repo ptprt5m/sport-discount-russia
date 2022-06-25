@@ -1,0 +1,663 @@
+@import "commons/_variables";
+@import "commons/_mixins";
+
+//Common styles
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $white;
+}
+
+.flex {
+  @include flex;
+}
+
+.flexColumn {
+  @include flexColumn;
+}
+
+.wrapper {
+  @include wh(1180px);
+  margin: 0 auto;
+}
+
+.up {
+  padding: 18px;
+  background: $blue;
+  position: fixed;
+  right: 45px;
+  bottom: 45px;
+  z-index: 999;
+  display: none;
+}
+
+.upActive {
+  display: block;
+}
+
+.default-button {
+  @include links;
+  background: $white;
+  border: 2px $lightGray solid;
+  border-radius: 10px;
+
+  img {
+    padding: 5px 10px;
+  }
+}
+
+.discountPercentage {
+  background: $red;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 99;
+  top: 30px;
+  left: 20px;
+
+  p {
+    @include text(14px, 18px, $white, normal);
+    margin: auto;
+    padding: 7px 13px;
+  }
+}
+
+.newItem {
+  background: $green;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 99;
+  top: 30px;
+  left: 100px;
+
+  p {
+    @include text(14px, 18px, $white, normal);
+    margin: auto;
+    padding: 7px 13px;
+  }
+}
+
+.addToFavorites {
+  opacity: 30%;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  z-index: 99;
+  @include links(80%);
+
+  img {
+    @include wh(25px);
+  }
+}
+
+//HotDeals styles
+
+.hotDeals {
+  @include flexColumn;
+  @include wh(100%);
+
+  &__topBlock {
+    @include wh(100%);
+  }
+}
+
+//Main styles
+
+.main {
+  &__wrapper {
+    @include flexColumn;
+
+    &-content {
+      @include flexColumn;
+      @include wh(100%);
+    }
+
+    &-top {
+      @include wh(100%);
+    }
+
+    &-search {
+      margin: 37px 0px;
+      @include flex;
+
+      p {
+        @include text(28px, 32px, $black, 700);
+      }
+    }
+
+    &-back {
+      @include flex;
+
+      button {
+        margin-right: 20px;
+      }
+
+      p {
+        @include text(28px, 32px, $black, 700);
+      }
+    }
+
+    &-sortedBy {
+      margin-bottom: 50px;
+      @include flex {
+        justify-content: flex-start;
+      }
+
+      p {
+        @include text(18px, 22px, $black, bold);
+        margin-right: 50px;
+      }
+
+      a {
+        @include links;
+        @include text(18px, 22px, $black, normal);
+        margin-right: 15px;
+      }
+
+      &_age, &_price {
+        img {
+          transition: .3s all;
+
+          &:not(.price) {
+            margin-right: 50px;
+          }
+        }
+      }
+
+      .active {
+        transform: rotate(180deg);
+
+        &:not(.price) {
+          margin-right: 50px;
+        }
+      }
+    }
+  }
+
+  &__basket {
+    @include flexColumn;
+    @include wh(100%);
+    margin: -20px 0;
+
+    &-item {
+      @include flex;
+      @include wh(100%);
+      margin: 20px 0;
+    }
+
+    &-photoBlock {
+      @include wh(230px);
+      position: relative;
+    }
+
+    &-desc {
+      @include flexColumn;
+      @include wh(50%);
+      align-items: flex-start;
+      text-align: left;
+      flex-grow: 6;
+      background: $lightGray;
+      border-radius: 0 20px 20px 0;
+      padding: 29px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    &-sizes {
+      margin-bottom: 20px;
+    }
+
+    &-title {
+      @include flex;
+      @include text(20px, 25px, $black, bold);
+      padding-bottom: 20px;
+
+      span {
+        @include text(14px, 18px, $gray, bold);
+        margin-left: 8px;
+      }
+    }
+
+    &-photo {
+      @include wh(100%, 203px);
+      transition: .3s all;
+      cursor: pointer;
+      border-radius: 20px 0 0 20px;
+    }
+
+    &-price {
+      @include text(24px, 29px, $black, bold);
+      @include flex;
+
+      span {
+        @include text(20px, 25px, red, bold);
+        text-decoration: line-through;
+        margin-left: 15px;
+      }
+
+      //Наискосок перечеркнуто, либо крест-накрест:
+
+      //span {
+      //	@include text(20px, 25px, red, bold);
+      //	white-space: pre;
+      //	position: relative;
+      //	display: inline-block;
+      //	&::before {
+      //		content: "";
+      //		display: block;
+      //		position: absolute;
+      //		left: 0;
+      //		top: 50%;
+      //		color: red;
+      //		width: 100%;
+      //		height: 0;
+      //		border-bottom: 1.5px solid red;
+      //		transform: rotate(10deg);
+      //	}
+      //	&::after {
+      //		content: "";
+      //		display: block;
+      //		position: absolute;
+      //		left: 0;
+      //		top: 50%;
+      //		color: red;
+      //		width: 100%;
+      //		height: 0;
+      //		border-bottom: 1.5px solid red;
+      //		transform: rotate(-10deg);
+      //	}
+      //}
+    }
+
+    &-buy {
+      @include btn($blue, pointer, 15px);
+      @include text(16px, 20px, $white, bold);
+      text-decoration: none;
+      padding: 15px 5px;
+      transition: .3s all;
+    }
+
+    &-buttonsGroup {
+      @include flexColumn;
+      flex-grow: 1;
+
+      &-text {
+        @include text(16px, 20px, $white, bold);
+        text-decoration: none;
+        padding: 15px 5px;
+      }
+
+    }
+  }
+
+  &__checkout {
+    @include flex;
+    @include wh(100%);
+    margin: 80px 0 50px;
+
+    &-button {
+      @include links;
+      @include text(14px, 17px, $black, normal);
+      @include radius(15px, 10px 20px);
+      border: 2px solid $lightGray;
+      box-sizing: border-box;
+      background: transparent;
+    }
+
+    p {
+      @include text(24px, 28px, $black, 700);
+
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__catsName {
+    @include text(18px, 22px, $black, bold);
+    padding-bottom: 20px;
+    height: 55px;
+  }
+
+  &__item {
+    @include wh(250px);
+    position: relative;
+    border-radius: 0 0 15px 15px;
+
+    :not(:last-child) {
+      @include flexPack;
+    }
+
+    background-color: $darkWhite;
+    margin-bottom: 50px;
+    overflow: hidden;
+
+    //h3 {
+    //  @include text(20px, 25px, $black, bold);
+    //  padding-bottom: 20px;
+    //}
+
+    h4 {
+      @include text(24px, 29px, $black, bold);
+      min-height: 58px;
+      display: grid;
+      align-items: end;
+
+      span {
+        @include text(20px, 25px, red, bold);
+        text-decoration: line-through;
+      }
+
+      //Наискосок перечеркнуто, либо крест-накрест:
+
+      //span {
+      //	@include text(20px, 25px, red, bold);
+      //	white-space: pre;
+      //	position: relative;
+      //	display: inline-block;
+      //	&::before {
+      //		content: "";
+      //		display: block;
+      //		position: absolute;
+      //		left: 0;
+      //		top: 50%;
+      //		color: red;
+      //		width: 100%;
+      //		height: 0;
+      //		border-bottom: 1.5px solid red;
+      //		transform: rotate(10deg);
+      //	}
+      //	&::after {
+      //		content: "";
+      //		display: block;
+      //		position: absolute;
+      //		left: 0;
+      //		top: 50%;
+      //		color: red;
+      //		width: 100%;
+      //		height: 0;
+      //		border-bottom: 1.5px solid red;
+      //		transform: rotate(-10deg);
+      //	}
+      //}
+    }
+
+    &-photo {
+      @include wh(100%, 250px);
+      min-height: 250px;
+      transition: .3s all;
+      cursor: pointer;
+
+      &:hover, &:active, &:focus {
+        transform: scale(1.05);
+      }
+    }
+
+    &-action {
+      @include wh(100%);
+      @include flexColumn;
+      @include btn($blue, pointer, 0 0 15px 15px);
+      transition: .3s all;
+
+      &-text {
+        @include text(16px, 20px, $white, bold);
+        text-decoration: none;
+        padding: 15px 5px;
+      }
+
+      &:hover, &:active, &:focus {
+        background-color: $darkBlue;
+      }
+    }
+
+    &-wrapper {
+      padding: 29px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    &-group {
+      @include flex;
+      padding-bottom: 20px;
+    }
+  }
+
+  &__content {
+    @include flex;
+    @include wh(100%);
+  }
+
+  &__backet {
+    @include flexColumn;
+    @include wh(100%);
+  }
+
+
+  &__showMore {
+    @include links(55%);
+    @include text(14px, 17px, $black, normal);
+    @include radius(10px, 25px 125px);
+    border: 2px solid $lightGray;
+    box-sizing: border-box;
+    margin: 0px 5px 40px;
+  }
+}
+
+.group__info {
+  :first-child {
+    margin-bottom: 3px;
+  }
+
+  p {
+    @include text(12px, 15px, $black, normal);
+  }
+
+  &-last {
+    @include text(12px, 15px, red, normal);
+    display: inline;
+    margin-left: 5px;
+  }
+
+  &-bold {
+    @include text(16px, 20px, $black, bold);
+    font-weight: bold !important;
+    display: inline;
+  }
+
+  &-left {
+    @include flex;
+
+    img {
+      @include wh(5px);
+      margin-right: 5px;
+    }
+  }
+}
+
+.sold-out {
+  @include wh(100%, 60px);
+  @include flexColumn;
+  @include btn($lightBlack, default, 0 0 8px 8px);
+
+  &:hover, &:active, &:focus {
+    background-color: $lightBlack;
+  }
+}
+
+.favorite {
+  opacity: 100%;
+  @include links(100%);
+  @include add(absolute, 99, 25px 0px 5px 305px);
+}
+
+//Search styles start
+
+.search {
+  input {
+    @include text(14px, 17px, $gray);
+    background: url("../img/search.svg") no-repeat 18px center;
+    padding: 15px 5px 15px 45px;
+    border: 2px solid $lightGray;
+    border-radius: 10px;
+
+  }
+}
+
+//Checkbox start
+
+.checkbox-btn {
+  @include text(12px, 15px, $black, normal);
+  display: inline-block;
+  margin: 0 5px 0 0;
+  user-select: none;
+  position: relative;
+  transition: .2s all;
+}
+
+.checkbox-btn input[type=checkbox] {
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+.checkbox-btn span {
+  border-radius: 10px;
+  background: $white;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0px 10px;
+  line-height: 30px;
+  transition: background 0.2s ease;
+}
+
+/* Checked */
+.checkbox-btn input[type=checkbox]:checked + span {
+  background: #ffe0a6;
+}
+
+/* Focus */
+.focused span {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+
+/* Hover */
+.checkbox-btn:hover {
+  color: #666;
+}
+
+/* Active */
+.checkbox-btn input[type=checkbox]:active:not(:disabled) + span {
+  background: #d2c5ac;
+  color: #000;
+}
+
+/* Disabled */
+.checkbox-btn input[type=checkbox]:disabled + span {
+  background: #efefef;
+  color: #666;
+  cursor: default;
+}
+
+.checkbox-btn input[type=checkbox]:checked:disabled + span {
+  background: #f7efdc;
+}
+
+//Product Card start
+
+.productCard {
+  @include flexColumn;
+  align-items: flex-start;
+  margin: 50px 0;
+
+  &__mainBlock {
+    @include flex;
+    margin-top: 50px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    text-align: left;
+
+    &-photo {
+      position: relative;
+      margin-right: 30px;
+
+      &_img {
+        @include wh(40vw);
+      }
+    }
+
+    &-about {
+      &_name {
+        @include text(28px, 38px, $black, bold);
+        margin-bottom: 10px;
+      }
+
+      &_art {
+        @include text(14px, 18px, $gray, bold);
+        display: inline-block;
+        margin-bottom: 15px;
+      }
+
+      &_desc {
+        @include text(18px, 22px, $black, normal);
+        margin-bottom: 20px;
+      }
+
+      &_sizes {
+        @include text(18px, 22px, $black, normal);
+        margin-bottom: 20px;
+
+        span {
+          @include text(18px, 22px, $black, bold);
+          font-weight: bold !important;
+        }
+      }
+
+      &_sex {
+        @include text(18px, 22px, $black, normal);
+        margin-bottom: 20px;
+        span {
+          @include text(18px, 22px, $black, bold);
+          font-weight: bold !important;
+        }
+      }
+
+      &_price {
+        @include text(24px, 29px, $black, bold);
+        min-height: 58px;
+        display: grid;
+        align-items: end;
+
+        span {
+          @include text(20px, 25px, red, bold);
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+
+  &__addToBasket {
+    @include links;
+    @include text(14px, 17px, $black, normal);
+    @include radius(15px, 10px 20px 10px 35px);
+    background: url('../img/plus.svg') no-repeat 12px center;
+    border: 2px solid $lightGray;
+    box-sizing: border-box;
+    align-self: flex-end;
+  }
+}
+
+.hotDeals__title {
+  @include flex;
+  img {
+    @include wh(30px, 30px);
+    margin-right: 10px;
+  }
+}

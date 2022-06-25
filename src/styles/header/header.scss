@@ -1,0 +1,77 @@
+@import "../commons/_variables";
+@import "../commons/_mixins";
+
+.header {
+  background: url('../../img/header/bg.webp') no-repeat fixed center center;
+  background-size: cover;
+
+  &__wrapper {
+    @include flex;
+    @include flexPack;
+    padding: 40px 0px 65px;
+  }
+
+  &__nav {
+    &-link {
+      @include links;
+      @include text(18px, 22px, $white, 400);
+
+      &:not(:last-child) {
+        margin-right: 50px;
+      }
+
+      img {
+        @include wh(35px, 35px);
+        fill: #111;
+      }
+    }
+
+    &-basket {
+      background: url('../../img/basket.svg') no-repeat left;
+      padding-left: 32px;
+    }
+  }
+
+  &__items {
+    padding: 25px 0px 3px;
+    text-align: right;
+
+    &-title {
+      @include text(38px, 46px, $white, bold);
+    }
+  }
+
+  &__blur {
+    background: rgba(31, 32, 33, 0.85);
+  }
+
+  &__top-position {
+    @include flex;
+    @include wh(100%);
+    padding-bottom: 50px;
+  }
+
+  &__logo {
+    @include flex;
+    padding-right: 120px;
+
+    img {
+      @include wh(80px, 80px);
+      border-radius: 100px;
+      margin-right: 20px;
+    }
+
+    &-about {
+      @include flexColumn;
+      align-items: flex-start;
+    }
+
+    &-title {
+      @include text(24px, 29px, $white, bold);
+    }
+
+    &-subtitle {
+      @include text(18px, 22px, $white);
+    }
+  }
+}
