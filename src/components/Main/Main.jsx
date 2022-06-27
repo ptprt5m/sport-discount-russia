@@ -12,9 +12,9 @@ const Main = () => {
     }
 
     return (
-        <main className="main">
-            <div className="wrapper">
-                <div className="main__wrapper">
+        <main className='main'>
+            <div className='wrapper'>
+                <div className='main__wrapper flexColumn'>
 
                     <Routes>
                         <Route path='/' element={<Home numberWithCommas={numberWithCommas}/>}/>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import Favorite from '../../../img/main/Favorites_red.png'
-import {limitStr} from "../../../commons/func";
+import {limitStr} from '../../../commons/func'
 
 const ProductItem = ({product, numberWithCommas}) => {
     const [favorites, setFavorites] = useState(false)
@@ -30,29 +30,29 @@ const ProductItem = ({product, numberWithCommas}) => {
                     <p>NEW</p>
                 </div>
                 : null}
-            <a href="#!" className='addToFavorites' title="Добавить в избранное">
-                <img src={Favorite} alt="Favorites"/>
+            <a href="#!" className='addToFavorites' title='Добавить в избранное'>
+                <img src={Favorite} alt='Favorites'/>
             </a>
             <NavLink to={'/products/' + product.id}>
-                <img className="main__item-photo" src={product.img} alt="Фото"/>
+                <img className='main__item-photo wh100' src={product.img} alt='Фото'/>
             </NavLink>
-            <div className="main__item-wrapper">
+            <div className='main__item-wrapper'>
                 <NavLink to={'/products/' + product.id}>
-                    <h3 className="main__catsName">{limitStr(product.name, 30)}</h3>
+                    <h3 className='main__catsName'>{limitStr(product.name, 30)}</h3>
                 </NavLink>
-                <div className="main__item-group">
-                    {/*<div className="group__info-left"><img src={line} alt="Line"/>*/}
+                <div className='main__item-group flex'>
+                    {/*<div className='group__info-left flex'><img src={line} alt="Line"/>*/}
                     {/*    <p>Коричневый*/}
                     {/*        <br/> окрас</p>*/}
                     {/*</div>*/}
-                    <div className="group__info">
+                    <div className='group__info'>
                         <p>Размеры US</p>
-                        <p className="group__info-bold">{product.sizes.join(', ')}</p>
+                        <p className='group__info-bold'>{product.sizes.join(', ')}</p>
                         {(product.sizes.length === 1) ? <span className='group__info-last'>Последний</span> : null}
                     </div>
-                    <div className="group__info">
+                    <div className='group__info'>
                         <p>Пол</p>
-                        <p className="group__info-bold">{product.sex}</p>
+                        <p className='group__info-bold'>{product.sex}</p>
                     </div>
                 </div>
                 <h4>{product.sale !== 0 ?
@@ -64,7 +64,7 @@ const ProductItem = ({product, numberWithCommas}) => {
                         numberWithCommas(product.price)} руб.
                 </h4>
             </div>
-            <div className="main__item-action"><a className="main__item-action-text" href="#!">В корзину</a></div>
+            <div className='main__item-action flexColumn wh100'><a className='main__item-action-text' href='#!'>В корзину</a></div>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from 'react-slick'
-import ProductItem from "../ProductImtes/ProductItem/ProductItem";
+import ProductItem from '../ProductImtes/ProductItem/ProductItem'
 
 const HotDealsSlick = ({itemsList, numberWithCommas}) => {
     const settings = {

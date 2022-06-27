@@ -1,22 +1,22 @@
 import React from 'react'
 import {products} from '../../data/data'
-import Favorite from "../../img/main/Favorites_red.png";
-import backLine from "../../img/backLine.svg";
-import {useNavigate} from "react-router-dom";
+import Favorite from '../../img/main/Favorites_red.png'
+import backLine from '../../img/backLine.svg'
+import {useNavigate} from 'react-router-dom'
 
 const PageItem = ({numberWithCommas}) => {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     return (
-        <div className='productCard'>
-            <div className="main__wrapper-back">
-                <button className="default-button" onClick={() => navigate(-1)}>
-                    <img src={backLine} alt="Назад"/>
+        <div className='productCard flexColumn'>
+            <div className='main__wrapper-back flex'>
+                <button className='default-button' onClick={() => navigate(-1)}>
+                    <img src={backLine} alt='Назад'/>
                 </button>
                 <p>Описание</p>
             </div>
-            <div className='productCard__mainBlock'>
+            <div className='productCard__mainBlock flex'>
                 <div className='productCard__mainBlock-photo'>
                     {products[0].sale !== 0 ?
                         <div className='discountPercentage flex'>
@@ -28,10 +28,10 @@ const PageItem = ({numberWithCommas}) => {
                             <p>NEW</p>
                         </div>
                         : null}
-                    <a href="#!" className='addToFavorites' title="Добавить в избранное">
-                        <img src={Favorite} alt="Favorites"/>
+                    <a href='#!' className='addToFavorites' title='Добавить в избранное'>
+                        <img src={Favorite} alt='Favorites'/>
                     </a>
-                    <img className='productCard__mainBlock-photo_img' src={products[0].img} alt="Фото товара"/>
+                    <img className='productCard__mainBlock-photo_img' src={products[0].img} alt='Фото товара'/>
                 </div>
                 <div className='productCard__mainBlock-about'>
                     <h3 className='productCard__mainBlock-about_name'>{products[0].name}</h3>
@@ -51,7 +51,7 @@ const PageItem = ({numberWithCommas}) => {
                     </p>
                 </div>
             </div>
-            <a className='productCard__addToBasket' href="#!">Добавить в корзину</a>
+            <a className='productCard__addToBasket' href='#!'>Добавить в корзину</a>
         </div>
     )
 }

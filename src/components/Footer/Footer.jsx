@@ -7,36 +7,36 @@ import insta from '../../img/footer/insta.png'
 const Footer = () => {
     return (
         <footer>
-            <div className="wrapper">
-                <div className="footer__wrapper">
-                    <div className="footer__wrapper-info">
-                        <div className="footer__logo">
-                            <img src={logo} alt="logo"/>
+            <div className='wrapper'>
+                <div className='footer__wrapper flex'>
+                    <div className='footer__wrapper-info flexColumn'>
+                        <div className='footer__logo flex'>
+                            <img src={logo} alt='logo'/>
                             <h5>sport discount russia</h5>
                         </div>
                         <p>2022 © Лучший дисконт-центр одежды, обуви и аксессуаров в Нижнем Новгороде. Все права защищены. Доставка по всей России.</p>
                     </div>
-                    <div className="footer__wrapper-links">
-                        <div className="footer__links-block">
+                    <div className='footer__wrapper-links flex'>
+                        <div className='footer__links-block flexColumn'>
                             <p>Основные ссылки</p>
                             <a href="#!">О компании</a>
                             <a href="#!">Каталог</a>
                             <a href="#!">Доставка</a>
                             <a href="#!">Оплата</a>
                         </div>
-                        <div className="footer__links-block">
+                        <div className='footer__links-block flexColumn'>
                             <p>Категории</p>
                             <a href="#!">Мужская одежда и обувь</a>
                             <a href="#!">Женская одежда и обувь</a>
                             <a href="#!">Детская одежда и обувь</a>
                             <a href="#!">Аксессуары</a>
                         </div>
-                        <div className="footer__links-block">
+                        <div className='footer__links-block flexColumn'>
                             <p>Полезные ссылки</p>
                             <a href="#!">Блог о моде</a>
                             <a href="#!">Наша миссия</a>
                         </div>
-                        <div className="footer__links-block">
+                        <div className='footer__links-block flexColumn'>
                             <p>Соц сети</p>
                             <a href="#!">
                                 <img src={vk} alt="vk"/>

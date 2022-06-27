@@ -1,5 +1,5 @@
-@import "commons/_variables";
-@import "commons/_mixins";
+@import 'commons/_variables';
+@import 'commons/_mixins';
 
 //Common styles
 
@@ -17,6 +17,10 @@ body {
 
 .flexColumn {
   @include flexColumn;
+}
+
+.wh100 {
+  @include wh(100%);
 }
 
 .wrapper {
@@ -79,27 +83,33 @@ body {
   }
 }
 
+//Add to favorites style
+
 .addToFavorites {
+  @include links(80%);
   opacity: 30%;
   position: absolute;
   top: 30px;
   right: 20px;
   z-index: 99;
-  @include links(80%);
 
   img {
     @include wh(25px);
   }
 }
 
+//Home Page styles
+
+.homePage {
+  @include wh(1180px);
+  margin: 50px 0;
+}
+
 //HotDeals styles
 
 .hotDeals {
-  @include flexColumn;
-  @include wh(100%);
-
   &__topBlock {
-    @include wh(100%);
+
   }
 }
 
@@ -107,20 +117,8 @@ body {
 
 .main {
   &__wrapper {
-    @include flexColumn;
-
-    &-content {
-      @include flexColumn;
-      @include wh(100%);
-    }
-
-    &-top {
-      @include wh(100%);
-    }
-
-    &-search {
+    &-titleBlock {
       margin: 37px 0px;
-      @include flex;
 
       p {
         @include text(28px, 32px, $black, 700);
@@ -128,8 +126,6 @@ body {
     }
 
     &-back {
-      @include flex;
-
       button {
         margin-right: 20px;
       }
@@ -141,9 +137,7 @@ body {
 
     &-sortedBy {
       margin-bottom: 50px;
-      @include flex {
-        justify-content: flex-start;
-      }
+      justify-content: flex-start;
 
       p {
         @include text(18px, 22px, $black, bold);
@@ -176,127 +170,7 @@ body {
     }
   }
 
-  &__basket {
-    @include flexColumn;
-    @include wh(100%);
-    margin: -20px 0;
-
-    &-item {
-      @include flex;
-      @include wh(100%);
-      margin: 20px 0;
-    }
-
-    &-photoBlock {
-      @include wh(230px);
-      position: relative;
-    }
-
-    &-desc {
-      @include flexColumn;
-      @include wh(50%);
-      align-items: flex-start;
-      text-align: left;
-      flex-grow: 6;
-      background: $lightGray;
-      border-radius: 0 20px 20px 0;
-      padding: 29px;
-
-      a {
-        text-decoration: none;
-      }
-    }
-
-    &-sizes {
-      margin-bottom: 20px;
-    }
-
-    &-title {
-      @include flex;
-      @include text(20px, 25px, $black, bold);
-      padding-bottom: 20px;
-
-      span {
-        @include text(14px, 18px, $gray, bold);
-        margin-left: 8px;
-      }
-    }
-
-    &-photo {
-      @include wh(100%, 203px);
-      transition: .3s all;
-      cursor: pointer;
-      border-radius: 20px 0 0 20px;
-    }
-
-    &-price {
-      @include text(24px, 29px, $black, bold);
-      @include flex;
-
-      span {
-        @include text(20px, 25px, red, bold);
-        text-decoration: line-through;
-        margin-left: 15px;
-      }
-
-      //Наискосок перечеркнуто, либо крест-накрест:
-
-      //span {
-      //	@include text(20px, 25px, red, bold);
-      //	white-space: pre;
-      //	position: relative;
-      //	display: inline-block;
-      //	&::before {
-      //		content: "";
-      //		display: block;
-      //		position: absolute;
-      //		left: 0;
-      //		top: 50%;
-      //		color: red;
-      //		width: 100%;
-      //		height: 0;
-      //		border-bottom: 1.5px solid red;
-      //		transform: rotate(10deg);
-      //	}
-      //	&::after {
-      //		content: "";
-      //		display: block;
-      //		position: absolute;
-      //		left: 0;
-      //		top: 50%;
-      //		color: red;
-      //		width: 100%;
-      //		height: 0;
-      //		border-bottom: 1.5px solid red;
-      //		transform: rotate(-10deg);
-      //	}
-      //}
-    }
-
-    &-buy {
-      @include btn($blue, pointer, 15px);
-      @include text(16px, 20px, $white, bold);
-      text-decoration: none;
-      padding: 15px 5px;
-      transition: .3s all;
-    }
-
-    &-buttonsGroup {
-      @include flexColumn;
-      flex-grow: 1;
-
-      &-text {
-        @include text(16px, 20px, $white, bold);
-        text-decoration: none;
-        padding: 15px 5px;
-      }
-
-    }
-  }
-
   &__checkout {
-    @include flex;
-    @include wh(100%);
     margin: 80px 0 50px;
 
     &-button {
@@ -327,14 +201,13 @@ body {
     @include wh(250px);
     position: relative;
     border-radius: 0 0 15px 15px;
+    background-color: $darkWhite;
+    margin-bottom: 50px;
+    overflow: hidden;
 
     :not(:last-child) {
       @include flexPack;
     }
-
-    background-color: $darkWhite;
-    margin-bottom: 50px;
-    overflow: hidden;
 
     //h3 {
     //  @include text(20px, 25px, $black, bold);
@@ -387,7 +260,7 @@ body {
     }
 
     &-photo {
-      @include wh(100%, 250px);
+      height: 250px;
       min-height: 250px;
       transition: .3s all;
       cursor: pointer;
@@ -398,8 +271,6 @@ body {
     }
 
     &-action {
-      @include wh(100%);
-      @include flexColumn;
       @include btn($blue, pointer, 0 0 15px 15px);
       transition: .3s all;
 
@@ -423,21 +294,13 @@ body {
     }
 
     &-group {
-      @include flex;
       padding-bottom: 20px;
     }
   }
 
   &__content {
-    @include flex;
-    @include wh(100%);
-  }
 
-  &__backet {
-    @include flexColumn;
-    @include wh(100%);
   }
-
 
   &__showMore {
     @include links(55%);
@@ -448,6 +311,8 @@ body {
     margin: 0px 5px 40px;
   }
 }
+
+//????????????
 
 .group__info {
   :first-child {
@@ -471,29 +336,11 @@ body {
   }
 
   &-left {
-    @include flex;
-
     img {
       @include wh(5px);
       margin-right: 5px;
     }
   }
-}
-
-.sold-out {
-  @include wh(100%, 60px);
-  @include flexColumn;
-  @include btn($lightBlack, default, 0 0 8px 8px);
-
-  &:hover, &:active, &:focus {
-    background-color: $lightBlack;
-  }
-}
-
-.favorite {
-  opacity: 100%;
-  @include links(100%);
-  @include add(absolute, 99, 25px 0px 5px 305px);
 }
 
 //Search styles start
@@ -505,7 +352,204 @@ body {
     padding: 15px 5px 15px 45px;
     border: 2px solid $lightGray;
     border-radius: 10px;
+  }
+}
 
+//Basket Page styles
+
+.basketPage {
+  &__container {
+    margin: -20px 0;
+
+    &-item {
+      margin: 20px 0;
+    }
+
+    &-photoBlock {
+      @include wh(230px);
+      position: relative;
+    }
+
+    &-desc {
+      @include wh(50%);
+      align-items: flex-start;
+      text-align: left;
+      flex-grow: 6;
+      background: $lightGray;
+      border-radius: 0 20px 20px 0;
+      padding: 29px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    &-sizes {
+      margin-bottom: 20px;
+    }
+
+    &-title {
+      @include text(20px, 25px, $black, bold);
+      padding-bottom: 20px;
+
+      span {
+        @include text(14px, 18px, $gray, bold);
+        margin-left: 8px;
+      }
+    }
+
+    &-photo {
+      height: 203px;
+      transition: .3s all;
+      cursor: pointer;
+      border-radius: 20px 0 0 20px;
+    }
+
+    &-price {
+      @include text(24px, 29px, $black, bold);
+
+      span {
+        @include text(20px, 25px, red, bold);
+        text-decoration: line-through;
+        margin-left: 15px;
+      }
+
+      //Наискосок перечеркнуто, либо крест-накрест:
+
+      //span {
+      //	@include text(20px, 25px, red, bold);
+      //	white-space: pre;
+      //	position: relative;
+      //	display: inline-block;
+      //	&::before {
+      //		content: "";
+      //		display: block;
+      //		position: absolute;
+      //		left: 0;
+      //		top: 50%;
+      //		color: red;
+      //		width: 100%;
+      //		height: 0;
+      //		border-bottom: 1.5px solid red;
+      //		transform: rotate(10deg);
+      //	}
+      //	&::after {
+      //		content: "";
+      //		display: block;
+      //		position: absolute;
+      //		left: 0;
+      //		top: 50%;
+      //		color: red;
+      //		width: 100%;
+      //		height: 0;
+      //		border-bottom: 1.5px solid red;
+      //		transform: rotate(-10deg);
+      //	}
+      //}
+    }
+
+    &-buy {
+      @include btn($blue, pointer, 15px);
+      @include text(16px, 20px, $white, bold);
+      text-decoration: none;
+      padding: 15px 5px;
+      transition: .3s all;
+    }
+
+    &-buttonsGroup {
+      flex-grow: 1;
+    }
+  }
+}
+
+//Product Card start
+
+.productCard {
+  align-items: flex-start;
+  margin: 50px 0;
+
+  &__mainBlock {
+    margin-top: 50px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    text-align: left;
+
+    &-photo {
+      position: relative;
+      margin-right: 30px;
+
+      &_img {
+        @include wh(40vw);
+      }
+    }
+
+    &-about {
+      &_name {
+        @include text(28px, 38px, $black, bold);
+        margin-bottom: 10px;
+      }
+
+      &_art {
+        @include text(14px, 18px, $gray, bold);
+        display: inline-block;
+        margin-bottom: 15px;
+      }
+
+      &_desc {
+        @include text(18px, 22px, $black, normal);
+        margin-bottom: 20px;
+      }
+
+      &_sizes {
+        @include text(18px, 22px, $black, normal);
+        margin-bottom: 20px;
+
+        span {
+          @include text(18px, 22px, $black, bold);
+          font-weight: bold !important;
+        }
+      }
+
+      &_sex {
+        @include text(18px, 22px, $black, normal);
+        margin-bottom: 20px;
+
+        span {
+          @include text(18px, 22px, $black, bold);
+          font-weight: bold !important;
+        }
+      }
+
+      &_price {
+        @include text(24px, 29px, $black, bold);
+        min-height: 58px;
+        display: grid;
+        align-items: end;
+
+        span {
+          @include text(20px, 25px, red, bold);
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+
+  &__addToBasket {
+    @include links;
+    @include text(14px, 17px, $black, normal);
+    @include radius(15px, 10px 20px 10px 35px);
+    background: url('../img/plus.svg') no-repeat 12px center;
+    border: 2px solid $lightGray;
+    box-sizing: border-box;
+    align-self: flex-end;
+  }
+}
+
+.hotDeals__title {
+
+  img {
+    @include wh(30px, 30px);
+    margin-right: 10px;
   }
 }
 
@@ -568,96 +612,4 @@ body {
 
 .checkbox-btn input[type=checkbox]:checked:disabled + span {
   background: #f7efdc;
-}
-
-//Product Card start
-
-.productCard {
-  @include flexColumn;
-  align-items: flex-start;
-  margin: 50px 0;
-
-  &__mainBlock {
-    @include flex;
-    margin-top: 50px;
-    align-items: flex-start;
-    flex-wrap: nowrap;
-    text-align: left;
-
-    &-photo {
-      position: relative;
-      margin-right: 30px;
-
-      &_img {
-        @include wh(40vw);
-      }
-    }
-
-    &-about {
-      &_name {
-        @include text(28px, 38px, $black, bold);
-        margin-bottom: 10px;
-      }
-
-      &_art {
-        @include text(14px, 18px, $gray, bold);
-        display: inline-block;
-        margin-bottom: 15px;
-      }
-
-      &_desc {
-        @include text(18px, 22px, $black, normal);
-        margin-bottom: 20px;
-      }
-
-      &_sizes {
-        @include text(18px, 22px, $black, normal);
-        margin-bottom: 20px;
-
-        span {
-          @include text(18px, 22px, $black, bold);
-          font-weight: bold !important;
-        }
-      }
-
-      &_sex {
-        @include text(18px, 22px, $black, normal);
-        margin-bottom: 20px;
-        span {
-          @include text(18px, 22px, $black, bold);
-          font-weight: bold !important;
-        }
-      }
-
-      &_price {
-        @include text(24px, 29px, $black, bold);
-        min-height: 58px;
-        display: grid;
-        align-items: end;
-
-        span {
-          @include text(20px, 25px, red, bold);
-          text-decoration: line-through;
-        }
-      }
-    }
-  }
-
-  &__addToBasket {
-    @include links;
-    @include text(14px, 17px, $black, normal);
-    @include radius(15px, 10px 20px 10px 35px);
-    background: url('../img/plus.svg') no-repeat 12px center;
-    border: 2px solid $lightGray;
-    box-sizing: border-box;
-    align-self: flex-end;
-  }
-}
-
-.hotDeals__title {
-  @include flex;
-  img {
-    @include wh(30px, 30px);
-    margin-right: 10px;
-  }
 }
