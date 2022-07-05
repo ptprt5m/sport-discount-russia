@@ -1,14 +1,18 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {products} from '../../data/data'
 import ProductItem from './ProductItem/ProductItem'
 import Search from '../Search/Search'
 import Vector from '../../img/main/Vector.png'
 
-const ProductItems = ({numberWithCommas}) => {
+const ProductItems = ({numberWithCommas, items, setItems}) => {
 
     const sortByPrice = () => {
 
     }
+
+    useEffect(() => {
+        setItems(products)
+    }, [])
 
     return (
         <div className='flexColumn wh100'>
@@ -29,9 +33,13 @@ const ProductItems = ({numberWithCommas}) => {
             </div>
             <div className='main__content flex wh100'>
 
-                {products.map(product => {
+                {items ? items.map(product => {
                     return <ProductItem numberWithCommas={numberWithCommas} key={product.id} product={product}/>
-                })}
+                }) : null}
+
+                {/*{products.map(product => {*/}
+                {/*    return <ProductItem numberWithCommas={numberWithCommas} key={product.id} product={product}/>*/}
+                {/*})}*/}
 
             </div>
             <a href='#!' className='main__showMore'>

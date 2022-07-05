@@ -10,10 +10,15 @@ import Main from './components/Main/Main'
 import Footer from './components/Footer/Footer'
 
 const App = () => {
+
+    const numberWithCommas = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
     return (
         <div>
-            <Header/>
-            <Main/>
+            <Header numberWithCommas={numberWithCommas}/>
+            <Main numberWithCommas={numberWithCommas}/>
             <Footer/>
         </div>
     )

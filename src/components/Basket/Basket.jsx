@@ -1,17 +1,20 @@
-import React from 'react'
-import {basketItems} from '../../data/data'
+import React, {useEffect} from 'react'
 import BasketItems from './BasketItems/BasketItems'
 import backLine from '../../img/backLine.svg'
 import {useNavigate} from 'react-router-dom'
 import Search from '../Search/Search'
 import Vector from '../../img/main/Vector.png'
+import {basketItemsData} from '../../data/data'
 
-const Basket = ({numberWithCommas}) => {
+const Basket = ({numberWithCommas, setBasketItems, basketItems}) => {
 
     const navigate = useNavigate();
 
-    return (
+    useEffect(() => {
+        setBasketItems(basketItemsData)
+    }, [])
 
+    return (
         <div className='basketPage flexColumn wh100'>
             <div className='wh100'>
                 <div className='main__wrapper-titleBlock flex'>
@@ -34,9 +37,9 @@ const Basket = ({numberWithCommas}) => {
                 </div>
             </div>
             <div className='basketPage__container flexColumn wh100'>
-                {basketItems.map(item => {
+                {basketItems ? basketItems.map(item => {
                     return <BasketItems numberWithCommas={numberWithCommas} key={item.id} item={item}/>
-                })}
+                }) : null}
             </div>
             <div className='main__checkout flex wh100'>
                 <p>К оплате: <span>{numberWithCommas(basketItems.reduce((total, item) => {

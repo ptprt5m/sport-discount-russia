@@ -3,9 +3,9 @@ import logo from '../../img/logo/logo.jpg'
 import favorites from '../../img/favorites.svg'
 import profile from '../../img/profile.svg'
 import {NavLink} from 'react-router-dom'
-import {products} from '../../data/data'
+import {basketItemsData, products} from '../../data/data'
 
-const Header = () => {
+const Header = ({numberWithCommas}) => {
     return (
         <header className='header'>
             <div className='header__blur'>
@@ -30,7 +30,9 @@ const Header = () => {
                             <div className='header__right-position'>
                                 <nav className='header__nav'>
                                     <NavLink className='header__nav-link header__nav-basket' to={'/basket'}
-                                             alt='Корзина'>1295 руб</NavLink>
+                                             alt='Корзина'>{numberWithCommas(basketItemsData.reduce((total, item) => {
+                                        return total + ((item.sale !== 0) ? Math.round(item.price - (item.price / 100 * item.sale)) : Math.round(item.price))
+                                    }, 0))} руб.</NavLink>
                                     <a className='header__nav-link' href='/'><img src={favorites} alt='Избранное'/></a>
                                     <a className='header__nav-link' href='/'><img src={profile} alt='Профиль'/></a>
                                 </nav>

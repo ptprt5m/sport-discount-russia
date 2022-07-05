@@ -274,6 +274,11 @@ body {
       @include btn($blue, pointer, 0 0 15px 15px);
       transition: .3s all;
 
+      &-added {
+        filter: brightness(50%);
+        cursor: pointer;
+      }
+
       &-text {
         @include text(16px, 20px, $white, bold);
         text-decoration: none;

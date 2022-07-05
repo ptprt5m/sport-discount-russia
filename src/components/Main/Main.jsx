@@ -1,15 +1,13 @@
 import React from 'react'
-import ProductItems from '../ProductImtes/ProductItems'
-import {Route, Routes} from 'react-router-dom'
-import Basket from '../Basket/Basket'
+import {Route, Routes, withRouter} from 'react-router-dom'
 import PageItem from '../PageItem/PageItem'
 import Home from '../__Home/Home'
+import ProductsItemsContainer from '../ProductImtes/ProductsItemsContainer'
+import BasketContainer from "../Basket/BasketContainer";
+import {compose} from "redux";
 
-const Main = () => {
+const Main = ({numberWithCommas}) => {
 
-    const numberWithCommas = (x) => {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
 
     return (
         <main className='main'>
@@ -19,9 +17,9 @@ const Main = () => {
                     <Routes>
                         <Route path='/' element={<Home numberWithCommas={numberWithCommas}/>}/>
                         {/*<Route path='/' element={<Navigate to={'/products'}/>}/>*/}
-                        <Route path='/products' element={<ProductItems numberWithCommas={numberWithCommas}/>}/>
-                        <Route path='/products/1' element={<PageItem numberWithCommas={numberWithCommas}/>}/>
-                        <Route path='/basket' element={<Basket numberWithCommas={numberWithCommas}/>}/>
+                        <Route path='/products' element={<ProductsItemsContainer numberWithCommas={numberWithCommas}/>}/>
+                        <Route path='/products/:itemId?' element={<PageItem numberWithCommas={numberWithCommas}/>}/>
+                        <Route path='/basket' element={<BasketContainer numberWithCommas={numberWithCommas}/>}/>
                         {/*<Route path='*' element={<Error404Page />}/>*/}
                     </Routes>
 

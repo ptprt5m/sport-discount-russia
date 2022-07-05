@@ -161,7 +161,7 @@ export const products = [
     }
 ]
 
-export const basketItems = [
+export const basketItemsData = [
     {
         id: 9,
         name: 'Puma Mirage Tech Core',

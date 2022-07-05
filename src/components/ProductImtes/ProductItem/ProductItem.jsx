@@ -5,6 +5,11 @@ import {limitStr} from '../../../commons/func'
 
 const ProductItem = ({product, numberWithCommas}) => {
     const [favorites, setFavorites] = useState(false)
+    const [isAdded, setIsAdded] = useState(false)
+
+    const toggleBasketAdded = () => {
+        setIsAdded(!isAdded)
+    }
 
     const favoriteAddFunc = () => {
         setFavorites(!favorites)
@@ -64,7 +69,11 @@ const ProductItem = ({product, numberWithCommas}) => {
                         numberWithCommas(product.price)} руб.
                 </h4>
             </div>
-            <div className='main__item-action flexColumn wh100'><a className='main__item-action-text' href='#!'>В корзину</a></div>
+            <div className={isAdded ? 'main__item-action-added flexColumn wh100' : 'main__item-action flexColumn wh100'} onClick={toggleBasketAdded}>
+                <div className='main__item-action-text'>
+                    {isAdded ? 'Убрать из корзины' : 'В корзину'}
+                </div>
+            </div>
         </div>
     )
 }
