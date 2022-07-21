@@ -1,11 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import logo from '../../img/logo/logo.jpg'
 import favorites from '../../img/favorites.svg'
 import profile from '../../img/profile.svg'
 import {NavLink} from 'react-router-dom'
-import {basketItemsData, products} from '../../data/data'
 
-const Header = ({numberWithCommas}) => {
+const Header = ({numberWithCommas, items, basketItems, getItems, getBasketItems}) => {
+
+    useEffect(() => {
+        getItems()
+        getBasketItems()
+    }, [])
+
     return (
         <header className='header'>
             <div className='header__blur'>
@@ -30,8 +35,8 @@ const Header = ({numberWithCommas}) => {
                             <div className='header__right-position'>
                                 <nav className='header__nav'>
                                     <NavLink className='header__nav-link header__nav-basket' to={'/basket'}
-                                             alt='Корзина'>{numberWithCommas(basketItemsData.reduce((total, item) => {
-                                        return total + ((item.sale !== 0) ? Math.round(item.price - (item.price / 100 * item.sale)) : Math.round(item.price))
+                                             alt='Корзина'>{numberWithCommas(basketItems.reduce((total, item) => {
+                                        return total + ((item.items.sale !== 0) ? Math.floor(item.items.price - (item.items.price / 100 * item.items.sale)) : Math.floor(item.items.price))
                                     }, 0))} руб.</NavLink>
                                     <a className='header__nav-link' href='/'><img src={favorites} alt='Избранное'/></a>
                                     <a className='header__nav-link' href='/'><img src={profile} alt='Профиль'/></a>
@@ -39,7 +44,7 @@ const Header = ({numberWithCommas}) => {
                             </div>
                         </div>
                         <h2 className='header__items-title'>
-                            Сейчас в наличии {products.length} уникальных товаров
+                            Сейчас в наличии {items.length} уникальных товаров
                         </h2>
                     </div>
                 </div>

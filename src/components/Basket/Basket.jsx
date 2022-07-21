@@ -4,15 +4,26 @@ import backLine from '../../img/backLine.svg'
 import {useNavigate} from 'react-router-dom'
 import Search from '../Search/Search'
 import Vector from '../../img/main/Vector.png'
-import {basketItemsData} from '../../data/data'
 
-const Basket = ({numberWithCommas, setBasketItems, basketItems}) => {
+const Basket = ({numberWithCommas, basketItems, deleteItemFromBasket, getBasketItems}) => {
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        setBasketItems(basketItemsData)
+        getBasketItems()
     }, [])
+
+    // useEffect(() => {
+    //     if (items.length > 0) {
+    //         for (let i = 0; i < items.length; i++) {
+    //             for (let j = 0; j < basketItems.length; j++) {
+    //                 if (basketItems[j] === items[i].id) {
+    //                     setBasketItemsArray([...basketItemsArray, items[i]])
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }, [items])
 
     return (
         <div className='basketPage flexColumn wh100'>
@@ -38,12 +49,12 @@ const Basket = ({numberWithCommas, setBasketItems, basketItems}) => {
             </div>
             <div className='basketPage__container flexColumn wh100'>
                 {basketItems ? basketItems.map(item => {
-                    return <BasketItems numberWithCommas={numberWithCommas} key={item.id} item={item}/>
+                    return <BasketItems deleteItemFromBasket={deleteItemFromBasket} numberWithCommas={numberWithCommas} key={item.id} item={item.items}/>
                 }) : null}
             </div>
             <div className='main__checkout flex wh100'>
                 <p>К оплате: <span>{numberWithCommas(basketItems.reduce((total, item) => {
-                    return total + ((item.sale !== 0) ? (item.price - (item.price / 100 * item.sale)) : item.price)
+                    return total + ((item.items.sale !== 0) ? (item.items.price - (item.items.price / 100 * item.items.sale)) : item.items.price)
                 }, 0))}</span> руб.</p>
                 <button href='#!' className='main__checkout-button'>
                     Оформить заказ

@@ -5,9 +5,9 @@ import './styles/fonts.css'
 import './styles/imports.scss'
 import './styles/screen.scss'
 
-import Header from './components/Header/Header'
 import Main from './components/Main/Main'
 import Footer from './components/Footer/Footer'
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = () => {
 
@@ -17,7 +17,7 @@ const App = () => {
 
     return (
         <div>
-            <Header numberWithCommas={numberWithCommas}/>
+            <HeaderContainer numberWithCommas={numberWithCommas}/>
             <Main numberWithCommas={numberWithCommas}/>
             <Footer/>
         </div>

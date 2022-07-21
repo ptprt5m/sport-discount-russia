@@ -1,18 +1,19 @@
-import React, {useEffect} from 'react'
-import {products} from '../../data/data'
+import React from 'react'
 import ProductItem from './ProductItem/ProductItem'
 import Search from '../Search/Search'
 import Vector from '../../img/main/Vector.png'
+import Preloader from "../commons/Preloader";
 
-const ProductItems = ({numberWithCommas, items, setItems}) => {
+const ProductItems = ({numberWithCommas, items, pageSize, deleteItemFromBasket, setBasketItemsTC,
+                          toggleIsAdded, isAdded, isFetching, isFetching_toBasket}) => {
+
+    if(isFetching) {
+        return <Preloader/>
+    }
 
     const sortByPrice = () => {
 
     }
-
-    useEffect(() => {
-        setItems(products)
-    }, [])
 
     return (
         <div className='flexColumn wh100'>
@@ -33,9 +34,13 @@ const ProductItems = ({numberWithCommas, items, setItems}) => {
             </div>
             <div className='main__content flex wh100'>
 
-                {items ? items.map(product => {
-                    return <ProductItem numberWithCommas={numberWithCommas} key={product.id} product={product}/>
-                }) : null}
+                {items.map(product => {
+                    return <ProductItem deleteItemFromBasket={deleteItemFromBasket}
+                                        setBasketItemsTC={setBasketItemsTC}
+                                        isFetching_toBasket={isFetching_toBasket}
+                                        isAdded={isAdded} toggleIsAdded={toggleIsAdded}
+                                        numberWithCommas={numberWithCommas} key={product.id} product={product}/>
+                })}
 
                 {/*{products.map(product => {*/}
                 {/*    return <ProductItem numberWithCommas={numberWithCommas} key={product.id} product={product}/>*/}

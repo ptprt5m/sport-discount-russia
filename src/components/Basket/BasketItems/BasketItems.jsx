@@ -4,11 +4,18 @@ import {NavLink} from 'react-router-dom'
 import Favorite from '../../../img/main/Favorites_red.png'
 import {limitStr} from '../../../commons/func'
 
-const BasketItems = ({item, numberWithCommas}) => {
+const BasketItems = ({item, numberWithCommas, deleteItemFromBasket}) => {
 
-    const deleteItemsFromBasket = () => {
-        return window.confirm('Вы действительно хотите удалить этот товар из корзины?')
+    const basketDelete = (id) => {
+        let resultDel = window.confirm('Вы действительно хотите удалить этот товар из корзины?')
+        if (resultDel) {
+            deleteItemFromBasket(item.id)
+        }
     }
+
+    const publicationDate = item.publicationDate;
+    const publicationDateInMs = new Date(publicationDate);
+    const dateNow = new Date()
 
     return (
         <div className='basketPage__container-item flex wh100'>
@@ -18,7 +25,7 @@ const BasketItems = ({item, numberWithCommas}) => {
                         <p>-{item.sale}%</p>
                     </div>
                     : null}
-                {(item.publicationDate === '17.06.2022') ?
+                {((dateNow.getTime() - 604800000) < publicationDateInMs.getTime()) ?
                     <div className='newItem flex'>
                         <p>NEW</p>
                     </div>
@@ -55,7 +62,7 @@ const BasketItems = ({item, numberWithCommas}) => {
                     : null}</h4>
             </div>
             <div className='basketPage__container-buttonsGroup flexColumn'>
-                <button className='default-button' onClick={deleteItemsFromBasket}>
+                <button className='default-button' onClick={() => basketDelete(item.id)}>
                     <img src={del} alt="Удалить товар"/>
                 </button>
             </div>

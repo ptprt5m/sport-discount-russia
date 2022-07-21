@@ -1,13 +1,11 @@
 import React from 'react'
 import {Route, Routes, withRouter} from 'react-router-dom'
-import PageItem from '../PageItem/PageItem'
 import Home from '../__Home/Home'
 import ProductsItemsContainer from '../ProductImtes/ProductsItemsContainer'
 import BasketContainer from "../Basket/BasketContainer";
-import {compose} from "redux";
+import PageItemContainer from "../PageItem/PageItemContainer";
 
 const Main = ({numberWithCommas}) => {
-
 
     return (
         <main className='main'>
@@ -18,7 +16,7 @@ const Main = ({numberWithCommas}) => {
                         <Route path='/' element={<Home numberWithCommas={numberWithCommas}/>}/>
                         {/*<Route path='/' element={<Navigate to={'/products'}/>}/>*/}
                         <Route path='/products' element={<ProductsItemsContainer numberWithCommas={numberWithCommas}/>}/>
-                        <Route path='/products/:itemId?' element={<PageItem numberWithCommas={numberWithCommas}/>}/>
+                        <Route path='/products/:itemId?' element={<PageItemContainer numberWithCommas={numberWithCommas}/>}/>
                         <Route path='/basket' element={<BasketContainer numberWithCommas={numberWithCommas}/>}/>
                         {/*<Route path='*' element={<Error404Page />}/>*/}
                     </Routes>

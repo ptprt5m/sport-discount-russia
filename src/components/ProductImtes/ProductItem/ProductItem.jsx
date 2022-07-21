@@ -2,13 +2,15 @@ import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import Favorite from '../../../img/main/Favorites_red.png'
 import {limitStr} from '../../../commons/func'
+import Preloader from "../../commons/Preloader";
 
-const ProductItem = ({product, numberWithCommas}) => {
+const ProductItem = ({product, numberWithCommas, setBasketItemsTC, isFetching_toBasket}) => {
     const [favorites, setFavorites] = useState(false)
     const [isAdded, setIsAdded] = useState(false)
 
-    const toggleBasketAdded = () => {
-        setIsAdded(!isAdded)
+    const basketAdded = (obj) => {
+        setIsAdded(true)
+        setBasketItemsTC(obj)
     }
 
     const favoriteAddFunc = () => {
@@ -23,6 +25,10 @@ const ProductItem = ({product, numberWithCommas}) => {
         return a
     }
 
+    const publicationDate = product.publicationDate;
+    const publicationDateInMs = new Date(publicationDate);
+    const dateNow = new Date()
+
     return (
         <div className='main__item'>
             {product.sale !== 0 ?
@@ -30,7 +36,7 @@ const ProductItem = ({product, numberWithCommas}) => {
                     <p>-{product.sale}%</p>
                 </div>
                 : null}
-            {(product.publicationDate === '17.06.2022') ?
+            {((dateNow.getTime() - 604800000) < publicationDateInMs.getTime()) ?
                 <div className='newItem flex'>
                     <p>NEW</p>
                 </div>
@@ -69,9 +75,20 @@ const ProductItem = ({product, numberWithCommas}) => {
                         numberWithCommas(product.price)} руб.
                 </h4>
             </div>
-            <div className={isAdded ? 'main__item-action-added flexColumn wh100' : 'main__item-action flexColumn wh100'} onClick={toggleBasketAdded}>
+            <div className={isAdded ? 'main__item-action-added flexColumn wh100' : 'main__item-action flexColumn wh100'}
+                 onClick={() => basketAdded({
+                     id: product.id,
+                     name: product.name,
+                     art: product.art,
+                     price: product.price,
+                     sizes: product.sizes,
+                     sale: product.sale,
+                     publicationDate: product.publicationDate,
+                     img: product.img
+                 })
+                 }>
                 <div className='main__item-action-text'>
-                    {isAdded ? 'Убрать из корзины' : 'В корзину'}
+                    {(isFetching_toBasket ? <Preloader/> : (isAdded ? 'Убрать из корзины' : 'В корзину'))}
                 </div>
             </div>
         </div>
